@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Float, DateTime, Text
+ from sqlalchemy import Column, Integer, String, Float, DateTime, Text
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 from app.core.database import Base
@@ -18,4 +18,4 @@ class Product(Base):
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
 
     order_items = relationship("OrderItem", back_populates="product")
-    inventory_logs = relationship("InventoryLog", back_populates="product")
+    inventory_logs = relationship("InventoryLog", back_populates="product", cascade="all, delete-orphan")
