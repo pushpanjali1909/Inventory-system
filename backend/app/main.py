@@ -5,16 +5,13 @@ from app.routers import products, customers, orders, inventory
 
 Base.metadata.create_all(bind=engine)
 
-app = FastAPI(
-    title="Inventory & Order Management API",
-    description="A complete Inventory and Order Management System",
-    version="1.0.0"
-)
+app = FastAPI(title="Inventory & Order Management API", version="1.0.0")
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
-    allow_credentials=True,
+    allow_origin_regex=".*",
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
